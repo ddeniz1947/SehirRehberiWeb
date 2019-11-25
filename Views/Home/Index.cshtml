@@ -1,0 +1,78 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<br />
+<br />
+
+
+<div>
+    <center>
+        <img src="../Content/HomePage2.png" alt="Alternate Text" />
+
+    </center>
+</div>
+
+@*<div ng-app="myApp" ng-controller="myCtrl">
+        {{ firstName }}
+    </div>*@
+
+@*<script>
+      var app = angular.module('myApp', ['ngRoute'])
+
+    app.controller('myCtrl', function ($scope, $http) {
+
+        //$scope.getMethod = function () {
+        //    $http({
+
+        //        method: 'GET',
+
+        //        url: '.api/Ang/getMethod'
+
+        //    }).then(function success(obj) {
+        //        debugger;
+        //        $scope.UserName = obj.UserName;
+        //    }, function error(response) {
+
+        //    });
+        //};
+        $scope.firstName = "deniz";
+
+    });
+
+
+    </script>*@
+@*<div ng-app="myApp" ng-controller="myCtrl">
+
+    First Name: <input type="text" ng-model="firstName"><br>
+    Last Name: <input type="text" ng-model="lastName"><br>
+    <br>
+    Full Name: {{firstName + " " + lastName}}
+    {{$scope.UserName.UserName}}
+   
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope,$http) {
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+        $http({
+
+            method: 'GET',
+
+            url: '/api/Ang/1',
+
+            data: $scope.obj
+
+        }).then(function success(obj) {
+            $scope.UserName = obj;
+            debugger;
+        }, function error(response) {
+
+        });
+    });
+</script>*@

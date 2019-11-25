@@ -1,0 +1,236 @@
+﻿@model SehirRehberiApp.Models.ViewModels.UserViewModel
+<!DOCTYPE html>
+<html ng-app="liveApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/styles")
+    @Styles.Render("~/scripts")
+    @Styles.Render("~/bundles/angularjs")
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script></script>
+</head>
+<body>
+    <!-- Modal Popup Register-->
+    <!-- Modal Popup -->
+
+
+
+
+    <div class="modal fade bd-example-modal-lg register" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" ng-controller="repeatCtrl">
+                <div class="modal-header">
+                    <h5 class="modal-title display-5" style="color:forestgreen">Kayıt Ol</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/RegisterIn" novalidate method="post" name="liveForm" class="needs-validation" ng-submit="liveForm.$valid &&check()">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" name="FirstName" placeholder="Adınız" ng-model="txtpin"  maxlength="30" required />
+                                @*<span style="color:Red" ng-show="liveForm.FirstName.$dirty&&liveForm.FirstName.$error.minlength"> ng-minlength="5" koyulmalı En az 5 Karakter Gerekli! </span>*@
+                                <br />
+                                <input type="text" class="form-control" name="LastName" placeholder="Soyadınız"  maxlength="30" required />
+                                <br />
+                                <input type="text" class="form-control" name="City" placeholder="Yaşadığınız Şehir" maxlength="30" minlength="3" required />
+                                <br />
+                                <input type="text" class="form-control" name="UserName" placeholder="Kullanıcı Adı" maxlength="30" minlength="3" required />
+                                <br />
+                                <input type="password" name="Password" ng-model="livePass" required class="form-control" maxlength="30" placeholder="Parola" />
+                                <br />
+                                <input type="password" name="repeatPass" ng-model="repeatPass" compare-to="livePass" required class="form-control" placeholder="Parola Tekrar" maxlength="30" />
+                                <span ng-show="Password.length < 3">deniz</span>
+                                <br />
+                                <span class="error text-danger" ng-show="liveForm.repeatPass.$error.compareTo">
+                                    Parolalar eşleşmiyor.
+                                </span>
+                                <input type="email" class="form-control" name="Email" placeholder="E-Mail Adresi" required />
+                            </div>
+                            <div class="col-md-4">
+                                <img width="300" height="200" src="~/Content/modalphoto.png" alt="Alternate Text" />
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" ng-disabled="liveForm.repeatPass.$error.compareTo || liveForm.FirstName.$dirty&&liveForm.FirstName.$error.minlength" class="btn btn-outline-success">Kaydı Oluştur</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade bd-example-modal-lg login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title display-5" style="color:forestgreen">Giriş Yap</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/Login" class="needs-validation" novalidate method="post">
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-md-7">
+
+                                <input type="text" class="form-control" name="UserName" placeholder="Kullanıcı Adı" required />
+                                <div class="invalid-feedback">
+                                    Lütfen Kullanıcı Adınızı Giriniz.
+                                </div>
+                                <br />
+                                <input type="password" class="form-control" name="Password" placeholder="Parola" required />
+                                <div class="invalid-feedback">
+                                    Lütfen Parolanızı Giriniz.
+                                </div>
+                                <br />
+                            </div>
+                            <div class="col-md-4">
+                                <img width="300" height="200" src="~/Content/modalphoto.png" alt="Alternate Text" />
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-success">Giriş Yap</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark static-top" style="background-color:darkseagreen">
+        <div class="container">
+            <h3 class="display-4" style="font-style:italic; color:white;"><img src="~/Content/sehirehberi.png" alt="Alternate Text" height="100" /></h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive" style="font-family:Calibri">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" style="color:darkgreen;font-weight:bold; font-size:18px; font-family:'Segoe UI Symbol'">Ana Sayfa </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About" style="color:darkgreen;font-weight:bold; font-size:18px; font-family:'Segoe UI Symbol'">Hakkımızda</a>
+                    </li>
+                    <li class="nav-item">
+
+                    </li>
+                    @if (!(User.Identity.IsAuthenticated))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" data-target=".register" data-toggle="modal" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Kayıt Ol!</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-target=".login" data-toggle="modal" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Giriş Yap</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link" href="@Url.RouteUrl("Logout")" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Çıkış Yap</a>
+                        }
+                    </li>
+                    <li class="nav-item">
+                        <form action="/Login" method="get">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a class="nav-link" href="@Url.RouteUrl("AdminPanel")" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Panele Git</a>
+
+                            }
+                        </form>
+
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Navigation -->
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - DCD</p>
+        </footer>
+    </div>
+    @Styles.Render("~/bundles/angularjs")
+    @Scripts.Render("~/scripts")
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    <script>
+
+        var liveApp = angular.module("liveApp", []);
+        liveApp.controller("repeatCtrl", function ($scope) {
+            $scope.student = {
+                password: "",
+                repeatPassword: ""
+            };
+            $scope.sendForm = function () {
+
+                $scope.msg = "Form Validated";
+
+            };
+         
+        });
+        liveApp.directive("compareTo", function () {
+            return {
+                require: "ngModel",
+                scope:
+                {
+                    repeatPassword: "=compareTo"
+                },
+                link: function (scope, element, attributes, paramval) {
+                    paramval.$validators.compareTo = function (val) {
+                        return val == scope.repeatPassword;
+                    };
+                    scope.$watch("repeatPassword", function () {
+                        paramval.$validate();
+
+                    });
+                }
+            };
+        });
+    </script>
+
+
+</body>
+</html>

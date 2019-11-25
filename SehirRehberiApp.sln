@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SehirRehberiApp", "SehirRehberiApp.csproj", "{AA22DC12-0E99-41B7-98A4-AEB837BDE4B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SehirRehBusiness", "..\ClassLibrary1\SehirRehBusiness.csproj", "{9EF5404B-580E-4530-A75C-0D8F6665AA89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA22DC12-0E99-41B7-98A4-AEB837BDE4B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA22DC12-0E99-41B7-98A4-AEB837BDE4B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA22DC12-0E99-41B7-98A4-AEB837BDE4B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA22DC12-0E99-41B7-98A4-AEB837BDE4B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF5404B-580E-4530-A75C-0D8F6665AA89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF5404B-580E-4530-A75C-0D8F6665AA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF5404B-580E-4530-A75C-0D8F6665AA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF5404B-580E-4530-A75C-0D8F6665AA89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91AA1676-4AA0-4E40-8C38-F7FAF00C174D}
+	EndGlobalSection
+EndGlobal

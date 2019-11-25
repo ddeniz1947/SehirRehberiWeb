@@ -1,0 +1,88 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @Styles.Render("~/styles")
+    @Styles.Render("~/scripts")
+    @Styles.Render("~/bundles/angularjs")
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+</head>
+<body>
+    <!-- Modal Popup Register-->
+    <!-- Modal Popup -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark static-top" style="background-color:darkseagreen">
+        <div class="container">
+            <h3 class="display-4" style="font-style:italic; color:white;"><img src="~/Content/sehirehberi.png" alt="Alternate Text" height="100" /></h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive" style="font-family:Calibri">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" style="color:darkgreen;font-weight:bold; font-size:18px; font-family:'Segoe UI Symbol'">Ana Sayfa </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About" style="color:darkgreen;font-weight:bold; font-size:18px; font-family:'Segoe UI Symbol'">Hakkımızda</a>
+                    </li>
+                    <li class="nav-item">
+
+                    </li>
+                    @if (!(User.Identity.IsAuthenticated))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" data-target=".register" data-toggle="modal" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Kayıt Ol!</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-target=".login" data-toggle="modal" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Giriş Yap</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link" href="@Url.RouteUrl("Logout")" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Çıkış Yap</a>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Navigation -->
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - DCD</p>
+        </footer>
+    </div>
+    @Styles.Render("~/bundles/angularjs")
+    @Scripts.Render("~/scripts")
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+</body>
+</html>

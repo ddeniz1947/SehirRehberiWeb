@@ -1,0 +1,52 @@
+﻿@model SehirRehberiApp.Models.ViewModels.EditViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/AdminArea/Views/Shared/_Layout.cshtml";
+}
+<center>
+    <h2 class="display-4"><u>Edit</u></h2>
+</center>
+
+<center>
+    <form action="/AdminPanelEdit" class="needs-validation" novalidate method="post" style="width:500px;">
+        <div class="container">
+            <input class="form-control" ng-minlength="5" maxlength="30" type="text" name="UserName" value="@Model.UserName" required />
+            <div class="invalid-feedback">
+                Kullanıcı Adı Alanı Boş Bırakılamaz.
+            </div>
+            <br />
+            <select class="form-control" id="StudentGender" name="Authority">
+                @if (Model.Authority == "Admin")
+                {
+
+                    <option>Admin</option>
+                    <option>User</option>
+                    <option>Editor</option>
+
+                }
+                else if (Model.Authority == "User")
+                {
+                    <option>User</option>
+                    <option>Admin</option>
+                    <option>Editor</option>
+                }
+                else
+                {
+                    <option>Editor</option>
+                    <option>User</option>
+                    <option>Admin</option>
+                }
+            </select>
+            <br />
+            <input class="form-control" maxlength="128" type="text" name="Email" value="@Model.Email" />
+            <div class="invalid-feedback">
+                E-Mail Alanı Boş Bırakılamaz.
+            </div>
+            <br />
+            @*<input class="btn btn-outline-success" type="submit" name="Id" value="@Model.Id">*@
+            <button class="btn btn-outline-success" type="submit">Değişiklikleri Kaydet</button>
+        </div>
+    </form>
+</center>
+
+

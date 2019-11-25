@@ -1,0 +1,118 @@
+﻿@model SehirRehberiApp.Models.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/AdminArea/Views/Shared/_Layout.cshtml";
+}
+
+
+<!--*Modal Popup*
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title display-5">Kullanıcı Düzenleme</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" name="UserName" value="@Model.UserName" placeholder="Kullanıcı Adı">
+
+                        </div>
+
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" name="Email" placeholder="E-Mail">
+                        </div>
+
+                        <div class="col-md-4">
+                            <span class="badge badge-pill badge-warning">Yetkiyi Değiştir</span> <i class="fas fa-arrow-circle-right"></i>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item" name="Authority" href="#">Editör</li>
+                                    <li class="dropdown-item" name="Authority" href="#">Kullanıcı</li>
+                                    <li class="dropdown-item" name="Authority" href="#">Yetkiyi Dondur</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+Modal Popup -->
+<!-- /.container -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h5 class="display-5"><span style="font-style: italic; color:darkgreen"><u>Yönetim Paneli</u></span></h5>
+        </div>
+
+    </div>
+    <div class="row" ng-app="myApp">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr style="background-color: darkseagreen; color: white;">
+                    <th scope="col"></th>
+                    <th scope="col">Kullanıcı</th>
+                    <th scope="col">Yetkisi</th>
+                    <th scope="col">E-Mail Adresi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Users)
+                {
+                    <tr>
+                        <td scope="row" style="width:10px;">
+                            @if (item.Authority == "Admin")
+                            {
+                                <i class="fas fa-user-shield"></i>
+                            }
+                            else if (item.Authority == "User")
+                            {
+                                <i class="fas fa-user"></i>
+                            }
+                            else
+                            {
+                                <i class="fas fa-user-edit"></i>
+
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-danger" href="@Url.Action("delete",new { item.id })">Sil</a>
+                            <a href="@Url.Action("edit", new { item.id })" class="btn btn-outline-success" style="color: black">
+                                @item.UserName
+                            </a>
+                        </td>
+                        <td>
+                            <span class="badge badge-pill badge-success">@item.Authority</span>
+                        </td>
+                        <td><span class="badge badge-pill badge-success">@item.Email</span></td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

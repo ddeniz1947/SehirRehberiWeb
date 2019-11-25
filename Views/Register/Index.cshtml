@@ -1,0 +1,29 @@
+﻿@model SehirRehberiApp.Models.ViewModels.UserViewModel
+@{ 
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+    <form action="RegisterIn" method="post">
+        <div class="container">
+            <h4 class="display-4" style="color:green"> Şehir Rehberi'ne Hoşgeldiniz !</h4>
+            <br />
+            <input type="text" name="UserName"  placeholder="Kullanıcı Adı" class="form-control" />
+            <br />
+            <input type="text" name="Password"  placeholder="Password" class="form-control" />
+            <br />
+            <input type="text" name="Email"  placeholder="E-Mail" class="form-control" />
+            <br />
+            <button type="submit" class="btn btn-outline-success">Kayıt Ol!</button>
+        </div>
+    </form>
+   
+</body>
+</html>
