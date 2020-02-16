@@ -25,10 +25,12 @@
             <div class="collapse navbar-collapse" id="navbarResponsive" style="font-family:Calibri">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/" style="color:darkgreen;font-weight:bold; font-size:18px; font-family:'Segoe UI Symbol'">Ana Sayfa </a>
+                        <button class="button-navbar" style="width:190px !important;"><a class="nav-link" href="/" style="color:white;font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Anasayfa</span></a></button>
+
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="About" style="color:darkgreen;font-weight:bold; font-size:18px; font-family:'Segoe UI Symbol'">Hakkımızda</a>
+                        <button class="button-navbar" style="width:190px !important;"><a class="nav-link" href="/" style="color:white;font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Hakkımızda</span></a></button>
+
                     </li>
                     <li class="nav-item">
 
@@ -36,16 +38,16 @@
                     @if (!(User.Identity.IsAuthenticated))
                     {
                         <li class="nav-item">
-                            <a class="nav-link" data-target=".register" data-toggle="modal" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Kayıt Ol!</a>
+                            <button class="button-navbar" style="width:190px !important;"><a class="nav-link" data-target=".register" data-toggle="modal" style="color:white;font-weight:bold;font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Kayıt Ol!</span></a></button>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-target=".login" data-toggle="modal" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Giriş Yap</a>
+                            <button class="button-navbar" style="width:190px !important;"><a class="nav-link" data-target=".login" data-toggle="modal" style="color:white;font-weight:bold;font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Giriş Yap</span></a></button>
                         </li>
                     }
-                    <li class="nav-item">
+                    <li class="nav-item"> 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class="nav-link" href="@Url.RouteUrl("Logout")" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Çıkış Yap</a>
+                            <button class="button-navbar" style="width:190px !important;"> <a class="nav-link" href="@Url.RouteUrl("Logout")" style="color:white;font-weight:bold;font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Çıkış Yap</span></a></button>
                         }
                     </li>
                 </ul>

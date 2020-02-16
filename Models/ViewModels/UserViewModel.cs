@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SehirRehberiApp.Models.ViewModels
 {
@@ -39,8 +40,10 @@ namespace SehirRehberiApp.Models.ViewModels
         {
             BCrypt.Net.BCrypt.HashPassword("", 13);
         }
+        public int IlId { get; set; }
+        public List<SelectListItem> Cities { get; set; }
+        public List<Sehirler> Sehirlers { get; set; }
 
-   
 
 
     }

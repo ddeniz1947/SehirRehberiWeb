@@ -1,0 +1,36 @@
+﻿/* code that is here, until the first @media block, will apply to any screen size */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+@media screen and (max-width: 320px) {
+    /* comes into effect for screens less than or equal to 320 pixels */
+    #somethingorother {
+        width: 120px;
+        font-size:15px;
+    }
+    
+}
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+    /* comes into effect for screens between 321 and 480 pixels (inclusive) */
+    #somethingorother {
+        width: 320px;
+        font-size:15px;
+    }
+}
+
+@media screen and (min-width: 481px) {
+    /* comes into effect for screens larger than or equal to 481 pixels */
+    #somethingorother {
+        width: 480px;
+        font-size:15px;
+    }
+}
+
+/* code that is here will apply to any screen size */

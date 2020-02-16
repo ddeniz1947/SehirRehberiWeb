@@ -1,0 +1,62 @@
+﻿@model SehirRehberiApp.Models.ViewModels.PostViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container">
+        <br /><br />
+        <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6 text-center">
+                @*<img src="https://via.placeholder.com/150" class="rounded-circle" alt="Alternate Text" />*@
+                <img alt="@Model.UserId" width="150" class="img-fluid avatar" src="data:image/jpg;base64,@Convert.ToBase64String(Model.ProfilePhoto)" />
+                @*   <i class="fas fa-user-alt"></i>*@
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6 text-center">
+                <h5 class="display-4">@Model.UserName</h5>
+
+            </div>
+            <div class="col-md-3">
+
+            </div>
+
+        </div>
+        <br /> <br />
+        <hr style="color:forestgreen; font-size:50px; font-weight:bold;" />
+        @foreach (var post in Model.Posts)
+        {
+
+            <div class="row">
+                <div class="col-md-8">
+                    <img alt="@post.Id" width="500" class="img-fluid" src="data:image/jpg;base64,@Convert.ToBase64String(post.ImgData)" />
+                </div>
+                <div class="col-md-4">
+                    <p class="parag" style="font-family:'Segoe UI';font-size:20px; color:forestgreen;"> @post.Description;</p>
+
+                    @*   <p>Paylaşan : @post.UserName</p>*@
+
+                    <p>@post.SehirAdi -- @post.IlceAdi </p>
+                    <a class="btn btn-outline-info" href="@Url.RouteUrl("ShowExtPost",new { post.Id })">Postun Devamını Gör</a>
+                    <p style="font-family:'Segoe UI';font-size:15px; font-weight:bold; color:forestgreen;">
+                        Paylaşıma Fotoğraf Ekleyin <a href="@Url.RouteUrl("AddExtraImage",new { post.Id })" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
+                    </p>
+                </div>
+            </div>
+
+            <br /> <br />
+            <hr style="color:forestgreen; font-size:50px; font-weight:bold;" />
+            <br /> <br /> <br /> <br />
+        }
+    </div>

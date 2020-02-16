@@ -1,0 +1,16 @@
+﻿@model SehirRehberiApp.Models.ViewModels.PostViewModel
+@{
+    ViewBag.Title = "PostIndex";
+    Layout = "~/Areas/AdminArea/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PostIndex</h2>
+
+<select>
+    @foreach (var sehir in Model.Sehirlers)
+    {
+        <option>@sehir.SehirAdi</option>
+    }
+</select>
+
+

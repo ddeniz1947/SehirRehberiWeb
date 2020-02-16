@@ -1,57 +1,119 @@
-﻿@model SehirRehberiApp.Models.ViewModels.UserViewModel
+﻿@*@model SehirRehberiApp.Models.ViewModels.UserViewModel*@
 <!DOCTYPE html>
 <html ng-app="liveApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <title>@ViewBag.Title - Şehir Rehberi</title>
     @Styles.Render("~/styles")
-    @Styles.Render("~/scripts")
-    @Styles.Render("~/bundles/angularjs")
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-    <script></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style type="text/css">
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .avatar {
+            vertical-align: middle;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .parag {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+        }
+        /*body{
+             background-image:url("../../Content/iconback.png");
+            background-size:1200px;
+            background-attachment:fixed;
+             background-position-x: center;
+        }*/
+        #section1 {
+            background-repeat: no-repeat;
+            background-position-x: center;
+        }
+
+        #section2 {
+            /*background-image:url("../../Content/darktree.png");
+            background-size:1200px;
+            background-attachment:fixed;*/
+            background-repeat: no-repeat;
+            /*background-position-x:center;
+            height: 500px;
+            width:1500px;*/
+        }
+
+        #section3 {
+            background-repeat: no-repeat;
+        }
+
+        .blank {
+            height: 30px;
+            background-color: darkseagreen;
+            opacity: 0.5;
+        }
+    </style>
+
 </head>
 <body>
     <!-- Modal Popup Register-->
     <!-- Modal Popup -->
 
-
-
-
     <div class="modal fade bd-example-modal-lg register" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" ng-controller="repeatCtrl">
                 <div class="modal-header">
-                    <h5 class="modal-title display-5" style="color:forestgreen">Kayıt Ol</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <div class="container" style="margin-top:25px;">
+                        <div class="row">
+                            <div class="col-md-3"><h5 class="modal-title display-5" style="color:forestgreen; font-family:'Birds of Paradise  Personal use';font-size:35px;">Kayıt Ol</h5></div>
+                            <div class="col-md-6"></div>
+                            <div class="col-md-3">
+                                <br />
+                                <button type="button" class="close btn btn-lg" data-dismiss="modal" aria-label="Close">
+                                    <span style="font-size:50px;" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <form action="/RegisterIn" novalidate method="post" name="liveForm" class="needs-validation" ng-submit="liveForm.$valid &&check()">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-7">
-                                <input type="text" class="form-control" name="FirstName" placeholder="Adınız" ng-model="txtpin"  maxlength="30" required />
-                                @*<span style="color:Red" ng-show="liveForm.FirstName.$dirty&&liveForm.FirstName.$error.minlength"> ng-minlength="5" koyulmalı En az 5 Karakter Gerekli! </span>*@
+                                <input type="text" class="form-control" name="FirstName" placeholder="Adınız" @*ng-minlength="5"*@ maxlength="30" required />
+                                @*<span style="color:Red" ng-show="liveForm.FirstName.$dirty&&liveForm.FirstName.$error.minlength"> En az 5 Karakter Gerekli! </span>*@
                                 <br />
-                                <input type="text" class="form-control" name="LastName" placeholder="Soyadınız"  maxlength="30" required />
+                                <input type="text" class="form-control" name="LastName" placeholder="Soyadınız" maxlength="30" required />
                                 <br />
-                                <input type="text" class="form-control" name="City" placeholder="Yaşadığınız Şehir" maxlength="30" minlength="3" required />
+                                <input type="text" class="form-control" name="City" placeholder="Yaşadığınız Şehir" maxlength="30" required />
                                 <br />
-                                <input type="text" class="form-control" name="UserName" placeholder="Kullanıcı Adı" maxlength="30" minlength="3" required />
+                                <input type="text" class="form-control" name="UserName" placeholder="Kullanıcı Adı" maxlength="30" required />
                                 <br />
-                                <input type="password" name="Password" ng-model="livePass" required class="form-control" maxlength="30" placeholder="Parola" />
+                                <input type="password" name="Password" ng-model="livePass" required class="form-control" id="myInput" maxlength="30" placeholder="Parola" />
                                 <br />
-                                <input type="password" name="repeatPass" ng-model="repeatPass" compare-to="livePass" required class="form-control" placeholder="Parola Tekrar" maxlength="30" />
-                                <span ng-show="Password.length < 3">deniz</span>
-                                <br />
+                                <input type="password" name="repeatPass" ng-model="repeatPass" ng-minlength="5" compare-to="livePass" required class="form-control" placeholder="Parola Tekrar" maxlength="30" />
+                                <span style="color:Red" ng-show="liveForm.repeatPass.$dirty&&liveForm.repeatPass.$error.minlength"> En az 5 Karakter Gerekli! </span>
                                 <span class="error text-danger" ng-show="liveForm.repeatPass.$error.compareTo">
                                     Parolalar eşleşmiyor.
                                 </span>
+                                <br />
                                 <input type="email" class="form-control" name="Email" placeholder="E-Mail Adresi" required />
                             </div>
                             <div class="col-md-4">
                                 <img width="300" height="200" src="~/Content/modalphoto.png" alt="Alternate Text" />
+                                <br /><br /><br />
+                                <input type="checkbox" onclick="myFunction()">Parolayı Göster
                             </div>
 
                         </div>
@@ -74,23 +136,33 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title display-5" style="color:forestgreen">Giriş Yap</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <div class="container" style="margin-top:25px;">
+                        <div class="row">
+                            <div class="col-md-3"><h5 class="modal-title display-5" style="color:forestgreen; font-family:'Birds of Paradise  Personal use';font-size:35px;">Giriş Yap</h5></div>
+                            <div class="col-md-6"></div>
+                            <div class="col-md-3">
+                                <br />
+                                <button type="button" class="close btn btn-lg" data-dismiss="modal" aria-label="Close">
+                                    <span style="font-size:50px;" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <form action="/Login" class="needs-validation" novalidate method="post">
                     <div class="modal-body">
 
                         <div class="row">
                             <div class="col-md-7">
-
+                                <br /><br />
                                 <input type="text" class="form-control" name="UserName" placeholder="Kullanıcı Adı" required />
                                 <div class="invalid-feedback">
                                     Lütfen Kullanıcı Adınızı Giriniz.
                                 </div>
                                 <br />
-                                <input type="password" class="form-control" name="Password" placeholder="Parola" required />
+                                <input type="password" class="form-control" name="Password" placeholder="Parola" id="myInput2" required />
+                                <br />
+                                <input type="checkbox" onclick="myFunction2()">Parolayı Göster
                                 <div class="invalid-feedback">
                                     Lütfen Parolanızı Giriniz.
                                 </div>
@@ -99,10 +171,7 @@
                             <div class="col-md-4">
                                 <img width="300" height="200" src="~/Content/modalphoto.png" alt="Alternate Text" />
                             </div>
-
                         </div>
-
-
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-outline-success">Giriş Yap</button>
@@ -116,67 +185,115 @@
 
 
 
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none; font-family:'Birds of Paradise  Personal use'" id="leftMenu">
+        <div class="container w3-bar-item">
+            <div class="row">
+                <img src="~/Content/sehirehberi.png" width="150" alt="Logo" />
+                <button onclick="closeLeftMenu()" style="font-size:20px; height:40px;" class="btn btn-outline-success mt-4">
+                    <center style="margin-top:auto">
+                        <i class="far fa-window-close"></i>
+                    </center>
+                </button>
+            </div>
+        </div>
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark static-top" style="background-color:darkseagreen">
+        <a href="@Url.RouteUrl("NewPost")" class="w3-bar-item w3-button" style="color:#17a2b8; font-size:25px;">Post Paylaş <i class="far fa-image"></i> </a>
+        <a href="@Url.RouteUrl("Profile")" class="w3-bar-item w3-button" style="color:#17a2b8; font-size:25px;">Profil <i class="far fa-id-badge"></i></a>
+        <a href="@Url.RouteUrl("EditProfile")" class="w3-bar-item w3-button" style="color:#17a2b8; font-size:25px;">Profili Düzenle<i class="far fa-id-badge"></i></a>
+        <a href="#" class="w3-bar-item w3-button" style="color:#17a2b8; font-size:25px;">Ayarlar <i class="fas fa-cog"></i></a>
+    </div>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark static-top" id="section0" style="background-color:darkseagreen;">
+
         <div class="container">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="w3-teal">
+                    <button class="w3-button w3-teal w3-xlarge w3-left" onclick="openLeftMenu()">&#9776;</button>
+                </div>
+            }
             <h3 class="display-4" style="font-style:italic; color:white;"><img src="~/Content/sehirehberi.png" alt="Alternate Text" height="100" /></h3>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive" style="font-family:Calibri">
-                <ul class="navbar-nav ml-auto">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <ul class="navbar-nav ml-auto mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/" style="color:darkgreen;font-weight:bold; font-size:18px; font-family:'Segoe UI Symbol'">Ana Sayfa </a>
+                        <button class="button-navbar" style="width:190px !important;"><a class="nav-link" href="/" style="color:white;font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Ana Sayfa</span></a></button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="About" style="color:darkgreen;font-weight:bold; font-size:18px; font-family:'Segoe UI Symbol'">Hakkımızda</a>
+                        <button class="button-navbar" style="width:190px !important;"><a class="nav-link" href="About" style="color:white; font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Hakkımızda</span></a></button>
                     </li>
                     <li class="nav-item">
 
                     </li>
                     @if (!(User.Identity.IsAuthenticated))
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" data-target=".register" data-toggle="modal" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Kayıt Ol!</a>
+                        <li class="nav-item" style="cursor:pointer;">
+                            <button class="button-navbar" style="width:190px !important;"> <a class="nav-link" data-target=".register" data-toggle="modal" style="color:white;font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Kayıt Ol!</span></a></button>
+
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-target=".login" data-toggle="modal" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Giriş Yap</a>
+                        <li class="nav-item" style="cursor:pointer;">
+
+                            <button class="button-navbar" style="width:190px !important;"> <a class="nav-link" data-target=".login" data-toggle="modal" style=" text-decoration:none; color:white;font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Giriş Yap</span></a></button>
                         </li>
                     }
-                    <li class="nav-item">
+                    <li class="nav-item" style="cursor:pointer;">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class="nav-link" href="@Url.RouteUrl("Logout")" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Çıkış Yap</a>
+                            <button class="button-navbar" style="width:190px !important;"><a class="nav-link" href="@Url.RouteUrl("Logout")" style="color:white;font-size:25px; font-family:'Birds of Paradise  Personal use'"><span>Çıkış Yap</span></a></button>
+
                         }
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="cursor:pointer;">
                         <form action="/Login" method="get">
                             @if (User.IsInRole("Admin"))
                             {
-                                <a class="nav-link" href="@Url.RouteUrl("AdminPanel")" style="color:darkgreen;font-weight:bold;font-size:18px; font-family:'Segoe UI Symbol'">Panele Git</a>
+                                <button formaction="@Url.RouteUrl("AdminPanel")" class="nav-link button-navbar" style="width:190px; margin-top:7px; color:white;font-weight:bold;font-size:25px;  font-family:'Birds of Paradise  Personal use'"><span>Panele Git</span></button>
 
                             }
                         </form>
 
 
                     </li>
+                    <li class="nav-item" style="cursor:pointer;">
+                        <form action="/Login" method="get">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <button formaction="@Url.RouteUrl("FirstPage")" class="nav-link button-navbar" style="width:190px; margin-top:7px; color:white;font-weight:bold;font-size:25px;  font-family:'Birds of Paradise  Personal use'"><span>Paylaşılanlar</span></button>
+
+                            }
+                        </form>
+
+
+                    </li>
+
                 </ul>
             </div>
         </div>
     </nav>
 
 
+
+    @*<div class="animated bounce delay-2s">Example</div>
+
+        <p class="animated infinite flash">I bounce until you make me stop!</p>*@
+
     <!-- Navigation -->
-    <div class="container body-content">
+    <div class=" body-content">
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - DCD</p>
         </footer>
     </div>
-    @Styles.Render("~/bundles/angularjs")
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
     @Scripts.Render("~/scripts")
+
+
     <script>
         (function () {
             'use strict';
@@ -209,7 +326,7 @@
                 $scope.msg = "Form Validated";
 
             };
-         
+
         });
         liveApp.directive("compareTo", function () {
             return {
@@ -230,7 +347,64 @@
             };
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#IlId").change(function () {
+                $.ajax({
+                    url: '/Ilceler',
+                    data: { ilID: $(this).val() },
+                    dataType: "JSON",
+                    success: function (result) {
+                        var ilce = $("#IlceId");
+                        ilce.empty();
+                        $.each(result, function (i, item) {
+                            ilce.append($("<option></option>").attr("value", item.id)
+                                .html(item.ilceAdi));
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        function openLeftMenu() {
+            document.getElementById("leftMenu").style.display = "block";
+        }
 
+        function closeLeftMenu() {
+            document.getElementById("leftMenu").style.display = "none";
+        }
 
+        function openRightMenu() {
+            document.getElementById("rightMenu").style.display = "block";
+        }
+
+        function closeRightMenu() {
+            document.getElementById("rightMenu").style.display = "none";
+        }
+    </script>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+    <script>
+        function myFunction2() {
+            var x = document.getElementById("myInput2");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+    @*<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>*@
 </body>
 </html>

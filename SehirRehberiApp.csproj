@@ -155,17 +155,42 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\TakipController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\RoleProvider.cs" />
+    <Compile Include="Models\ViewModels\ClickedProfileViewModel.cs" />
     <Compile Include="Models\ViewModels\EditViewModel.cs" />
+    <Compile Include="Models\ViewModels\ExtraImageViewModel.cs" />
+    <Compile Include="Models\ViewModels\PostViewModel.cs" />
+    <Compile Include="Models\ViewModels\ProfileViewModel.cs" />
     <Compile Include="Models\ViewModels\SehirlerViewModel.cs" />
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\buttonavbar.css" />
+    <Content Include="Content\css\buttoncss.css" />
+    <Content Include="Content\css\close.css" />
+    <Content Include="Content\css\grayscale.css" />
+    <Content Include="Content\css\grayscale.min.css" />
+    <Content Include="Content\css\mobile.css" />
+    <Content Include="Content\darktree.png" />
+    <Content Include="Content\default.jpeg" />
+    <Content Include="Content\green.jpg" />
+    <Content Include="Content\homep.jpg" />
+    <Content Include="Content\iconback.png" />
+    <Content Include="Content\js\jquery-3.4.1.js" />
+    <Content Include="Content\katman 1.png" />
+    <Content Include="Content\world.png" />
+    <Content Include="Content\StockSnap_GBGX9E7VA8.jpg" />
+    <Content Include="Content\tree.jpg" />
+    <Content Include="Content\worldsearch.png" />
+    <Content Include="Content\yuriy-bogdanov-yGrLQ3EQTl0-unsplash.jpg" />
     <Content Include="Scripts\getService.js" />
     <Content Include="Content\js\angular.min.js" />
     <Content Include="Content\back.png" />
@@ -208,8 +233,6 @@
     <Content Include="Content\js\conflict-detection.min.js" />
     <Content Include="Content\js\fontawesome.js" />
     <Content Include="Content\js\fontawesome.min.js" />
-    <Content Include="Content\js\jquery-3.3.1.slim.min.js" />
-    <Content Include="Content\js\jquery-3.4.1.min.js" />
     <Content Include="Content\js\popper.min.js" />
     <Content Include="Content\js\regular.js" />
     <Content Include="Content\js\regular.min.js" />
@@ -285,7 +308,6 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Areas\AdminArea\Views\Admin\Edit.cshtml" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
     <Content Include="Scripts\i18n\angular-locale_af.js" />
@@ -1024,10 +1046,14 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="fonts\Elyazması.TTF" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1043,6 +1069,7 @@
     <Content Include="Scripts\test-bundles\angular-route.js" />
     <Content Include="Scripts\test-bundles\angular-sanitize.js" />
     <Content Include="Scripts\test-bundles\angular-touch.js" />
+    <Content Include="Views\Shared\images.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1058,14 +1085,23 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
-    <Content Include="Views\Pages\FirstPage.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\PostNew.cshtml" />
+    <Content Include="Views\Post\NewPost.cshtml" />
+    <Content Include="Views\Pages\FirstPage.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Post\AddExtraImage.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Pages\ExtraImages.cshtml" />
+    <Content Include="Views\Profile\ClickedProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminArea\Models\" />
+    <Folder Include="Uploads\Photo\" />
+    <Folder Include="Views\Takip\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1073,8 +1109,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

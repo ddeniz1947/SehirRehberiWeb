@@ -39,7 +39,8 @@ namespace SehirRehberiApp.Controllers
             obj.Auth_id = 2;
             obj.IsActive = true;
             obj.IsDeleted = false;
-
+           
+            obj.ProfilePhoto = System.IO.File.ReadAllBytes("Content/default.jpeg");
 
             _ctx.UserProperties.Add(obj);
             _ctx.SaveChanges();

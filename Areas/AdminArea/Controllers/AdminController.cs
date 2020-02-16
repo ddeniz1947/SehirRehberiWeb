@@ -76,9 +76,13 @@ namespace SehirRehberiApp.Areas.AdminArea.Controllers
             {
                 authorization_id = 3;
             }
-            else
+            else if(Authority == "Editor")
             {
                 authorization_id = 4;
+            }
+            else
+            {
+                authorization_id = 1;
             }
             users.Authority = Authority;
 

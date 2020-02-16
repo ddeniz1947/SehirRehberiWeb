@@ -5,74 +5,93 @@
     ViewBag.Title = "Home Page";
 }
 
-<br />
-<br />
+    <br /><br />
+       
+          <div>
+              <div class="container" id="section1" style="font-family:'Birds of Paradise  Personal use';background-color:rgba(88, 165, 106, 0.1)">
+                  <br /><br />
+                  <div class="row">
+                      <div class="col-md-7" style="font-size:50px;color:darkolivegreen">
+                          Şehrin güzelliklerini keşfet!
+                          Kimsenin bilmedigi yerleri paylaş!
+                          <center>Keşfet <a href="#section2" style="color:forestgreen;"><i class="fas fa-share-square"></i></a></center>
+                      </div>
+                      <div class="col-md-4"><img class="img-fluid" src="~/Content/sehirehberi.png" alt="Alternate Text" /></div>
+                  </div>
+
+                  <br /><br /><br />
+              </div>
+              @*<div class="container">
+                  <img src="~/Content/katman 1.png" alt="Alternate Text" width="1000"/>
+              </div>*@
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <div>
+                  <br /><br />
+                  <div class="blank" id="section2"></div>
+                  <br />
+                  <br />
+
+                  <div class="container" style="font-family:'Birds of Paradise  Personal use';">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <img class="img-fluid" src="~/Content/world.png" alt="world" />
+                          </div>
+                          <div class="col-md-6" style="margin-top:55px !important; font-size:50px;color:darkolivegreen">
+
+                              Yakınındaki en güzel yerleri keşfet! <a href="#section3" style="color:forestgreen; "><i class="fas fa-share-square"></i></a>
+                              <button class="button-two" data-target=".register" data-toggle="modal"><span style="color: white;">Kayıt Ol!</span></button>
+
+                          </div>
+
+                      </div>
 
 
-<div>
-    <center>
-        <img src="../Content/HomePage2.png" alt="Alternate Text" />
+                      @*<a href="#section1" style="color:white; "><i class="fas fa-share-square"></i></a>*@
+                  </div>
+              </div>
 
-    </center>
-</div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <div>
 
-@*<div ng-app="myApp" ng-controller="myCtrl">
-        {{ firstName }}
-    </div>*@
+                  <div class="blank" id="section3"></div>
+                  <br />
+                  <br />
 
-@*<script>
-      var app = angular.module('myApp', ['ngRoute'])
+                  <div class="container" style="font-family:'Birds of Paradise  Personal use';">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <img class="img-fluid" src="~/Content/worldsearch.png" alt="world" />
+                          </div>
 
-    app.controller('myCtrl', function ($scope, $http) {
+                          <div class="col-md-6" style="font-size:50px;color:darkolivegreen">
+                              Sakin bir yerler mi lazım ? Şehrinde paylaşılan yerlere bak!
+                              <center><button class="button-two" data-target=".register" data-toggle="modal"><span style="color: white;  margin-bottom:10px !important;">Kayıt Ol!</span></button> <a href="#section0" style="color:forestgreen; "><i class="fas fa-sort-amount-up-alt"></i></a></center>
+                          </div>
 
-        //$scope.getMethod = function () {
-        //    $http({
+                      </div>
+                  </div>
 
-        //        method: 'GET',
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
 
-        //        url: '.api/Ang/getMethod'
+          </div>
 
-        //    }).then(function success(obj) {
-        //        debugger;
-        //        $scope.UserName = obj.UserName;
-        //    }, function error(response) {
-
-        //    });
-        //};
-        $scope.firstName = "deniz";
-
-    });
-
-
-    </script>*@
-@*<div ng-app="myApp" ng-controller="myCtrl">
-
-    First Name: <input type="text" ng-model="firstName"><br>
-    Last Name: <input type="text" ng-model="lastName"><br>
-    <br>
-    Full Name: {{firstName + " " + lastName}}
-    {{$scope.UserName.UserName}}
-   
-</div>
-
-<script>
-    var app = angular.module('myApp', []);
-    app.controller('myCtrl', function ($scope,$http) {
-        $scope.firstName = "John";
-        $scope.lastName = "Doe";
-        $http({
-
-            method: 'GET',
-
-            url: '/api/Ang/1',
-
-            data: $scope.obj
-
-        }).then(function success(obj) {
-            $scope.UserName = obj;
-            debugger;
-        }, function error(response) {
-
-        });
-    });
-</script>*@

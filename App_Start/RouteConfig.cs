@@ -20,6 +20,21 @@ namespace SehirRehberiApp
             routes.MapRoute("About", "About", new { controller = "Home", action = "About" });
             routes.MapRoute("Contact", "Contact", new { controller = "Home", action = "Contact" });
             routes.MapRoute("FirstPage", "FirstPage", new { controller = "Pages", action = "FirstPage" });
+            routes.MapRoute("PostIndex", "PostIndex", new { controller = "Post", action = "Index" });
+            routes.MapRoute("NewPost", "NewPost", new { controller = "Post", action = "NewPost" });
+            routes.MapRoute("Ilceler", "Ilceler", new { controller = "Post", action = "IlcelerByIlId" });
+            routes.MapRoute("Profile", "Profile", new { controller = "Profile", action = "Index" });
+            routes.MapRoute("AddExtraImage", "AddExtraImage", new { controller = "Post", action = "AddExtraImage" });
+            routes.MapRoute("EditProfile", "EditProfile", new { controller = "Profile", action = "Edit" });
+            routes.MapRoute("ShowExtPost", "ShowExtPost", new { controller = "Pages", action = "ExtraImages" });
+            routes.MapRoute("ClickedProfile", "ClickedProfile", new { controller = "Profile", action = "ClickedProfile" });
+            routes.MapRoute("FollowingUser", "FollowingUser", new { controller = "Profile", action = "FollowingUser" });
+            
+
+
+
+
+
         }
     }
 }
