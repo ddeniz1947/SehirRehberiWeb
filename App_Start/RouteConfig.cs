@@ -29,7 +29,9 @@ namespace SehirRehberiApp
             routes.MapRoute("ShowExtPost", "ShowExtPost", new { controller = "Pages", action = "ExtraImages" });
             routes.MapRoute("ClickedProfile", "ClickedProfile", new { controller = "Profile", action = "ClickedProfile" });
             routes.MapRoute("FollowingUser", "FollowingUser", new { controller = "Profile", action = "FollowingUser" });
-            
+            routes.MapRoute("DeletePost", "DeletePost", new { controller = "Post", action = "Delete" });
+            routes.MapRoute("UnFollowUser", "UnFollowUser", new { controller = "Profile", action = "UnFollowUser" });
+
 
 
 

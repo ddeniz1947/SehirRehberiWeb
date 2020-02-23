@@ -4,60 +4,58 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container" style="background-color:rgb(48, 195, 107,0.1)">
+<div class="container" style="background-color:rgb(48, 195, 107,0.05)">
     <center>
         <h3 class="display-2 rounded-circle" style="color:forestgreen; font-weight:300;">Paylaşılanlar</h3>
         <hr style="color:forestgreen; font-size:500px; font-weight:900" />
     </center>
     <br /><br />
+
     @foreach (var post in Model.Posts)
     {
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6" style="font-family:'Segoe UI';font-size:25px; color:forestgreen;">
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                @if (post.UserId == Convert.ToInt32(Request.Cookies["USERID"].Value))
+        <div class="row d-flex justify-content-center">
+            <div class="card text-center" style="width: 35rem;">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @foreach (var user in Model.GetUsers)
+                            {
+                                if (user.id == post.UserId)
                                 {
-                                    <h5 class="display-4"><u>@post.UserName</u></h5>
-                                }
-                                else
-                                {
-                                    <h5 class="display-4"><i><a href="@Url.RouteUrl("ClickedProfile", new { id = post.UserId })"><b>@post.UserName</b></a></i></h5>
+                                    <img class="avatar" alt="@post.Id" src="data:image/jpg;base64,@Convert.ToBase64String(user.ProfilePhoto)" />
 
-                                }
-                            </div>
-                            <div class="col-md-6">
-                                @foreach (var user in Model.GetUsers)
-                                {
-                                    if (user.id == post.UserId)
-                                    {
-                                        <img class="avatar" alt="@post.Id" src="data:image/jpg;base64,@Convert.ToBase64String(user.ProfilePhoto)" />
-
-                                    }
-                                }
-                            </div>
-
+                                }   
+                            }
                         </div>
-                        <p class="display-4"><i>@post.PostName</i></p>
-                        <img alt="@post.Id" width="500" class="img-fluid" src="data:image/jpg;base64,@Convert.ToBase64String(post.ImgData)" />
-                        <p class="parag"> <i>@post.Description</i></p>
+                        <div class="col-md-9">
+                            @if (post.UserId == Convert.ToInt32(Request.Cookies["USERID"].Value))
+                            {
+                                <h6 class="display-4"><u><b>@post.UserName</b></u></h6>
+                            }
+                            else
+                            {
+                                <h6 class="display-4"><i><a href="@Url.RouteUrl("ClickedProfile", new { id = post.UserId })"><b><u>@post.UserName</u></b></a></i></h6>
 
-                        <p><i>@post.SehirAdi - @post.IlceAdi </i></p>
-                        <p style="font-size:15px !important;">Paylaşma Zamanı : <i>@post.PostDate</i></p>
-
-                        <a class="btn btn-outline-info" href="@Url.Action("ExtraImages",new { post.Id })">Postun Devamını Gör</a>
+                            }
+                        </div>
                     </div>
+                  
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size:40px;">
+                        <u>@post.PostName</u>
+                    </h5>
+                    <img alt="@post.Id" width="500" class="img-fluid" src="data:image/jpg;base64,@Convert.ToBase64String(post.ImgData)" />
+                    <p class="parag"> <i>@post.Description</i></p>
+
+                    <p><i>@post.SehirAdi - @post.IlceAdi </i></p>
+                    <p style="font-size:15px !important;">Paylaşma Zamanı : <i>@post.PostDate</i></p>
+
+                    <a class="btn btn-outline-success" href="@Url.Action("ExtraImages",new { post.Id })">Postun Devamını Gör</a>
                 </div>
             </div>
-            <div class="col-md-3"></div>
-
         </div>
-        <br /> <br />
-        <hr style="color:forestgreen; font-size:20px" />
-        <br /> <br /> <br /> <br />
+        <br /><br />
     }
 </div>
+

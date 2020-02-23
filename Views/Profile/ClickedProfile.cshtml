@@ -4,64 +4,93 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
-    <br /><br />
-    <div class="row">
-        <div class="col-md-3">
-
-        </div>
-        <div class="col-md-6 text-center">
-            @*<img src="https://via.placeholder.com/150" class="rounded-circle" alt="Alternate Text" />*@
-           <img alt="@Model.ClickedUser_id" width="150" class="img-fluid rounded-circle" src="data:image/jpg;base64,@Convert.ToBase64String(Model.ClickedUserPhoto)" />
-            @*   <i class="fas fa-user-alt"></i>*@
-        </div>
-        <div class="col-md-3">
-
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-md-3">
-
-        </div>
-        <div class="col-md-6 text-center">
-            <h5 class="display-4">@Model.ClickedUserName</h5>
-            @if (Model.IsFollowing == true)
-            {
-                <p>Takip Ediliyor <i class="far fa-check-circle"></i></p>
-            }
-            else
-            {
-                <a class="btn btn-outline-success" href="@Url.Action("FollowingUser",new {id = Model.ClickedUser_id })">Takip Et <i class="fas fa-plus"></i></a>
-            }
-
-        </div>
-        <div class="col-md-3">
-
-        </div>
-
-    </div>
-    <br /> <br />
-    <hr style="color:forestgreen; font-size:50px; font-weight:bold;" />
-    @foreach (var post in Model.clickedUserPosts)
-    {
-
+    <div class="container">
+        <br /><br />
         <div class="row">
-            <div class="col-md-8">
-                <img alt="@post.Id" width="500" class="img-fluid" src="data:image/jpg;base64,@Convert.ToBase64String(post.ImgData)" />
+            <div class="col-md-3">
+
             </div>
-            <div class="col-md-4">
-                <p class="parag" style="font-family:'Segoe UI';font-size:20px; color:forestgreen;"> @post.Description;</p>
+            <div class="col-md-6 text-center">
+                @*<img src="https://via.placeholder.com/150" class="rounded-circle" alt="Alternate Text" />*@
+                <img alt="@Model.ClickedUser_id" width="150" class="img-responsive  rounded-circle" src="data:image/jpg;base64,@Convert.ToBase64String(Model.ClickedUserPhoto)" />
+                @*   <i class="fas fa-user-alt"></i>*@
+            </div>
+            <div class="col-md-3">
 
-                @*   <p>Paylaşan : @post.UserName</p>*@
-
-                <p>@post.SehirAdi -- @post.IlceAdi </p>
-                <a class="btn btn-outline-info" href="@Url.RouteUrl("ShowExtPost",new { post.Id })">Postun Devamını Gör</a>
             </div>
         </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
 
+            </div>
+            <div class="col-md-6 text-center">
+                <h5 class="display-4">@Model.ClickedUserName</h5>
+                @if (Model.IsFollowing == true)
+                {
+                    <button class="btn btn-outline-success" onclick="unFollowUser(@Model.ClickedUser_id)" data-toggle="tooltip" data-placement="top" title="Takipten Çıkar">Takip Ediliyor <i class="far fa-check-circle"></i></button>
+                }
+                else
+                {
+                    <a class="btn btn-outline-success" href="@Url.Action("FollowingUser",new {id = Model.ClickedUser_id })">Takip Et <i class="fas fa-plus"></i></a>
+                }
+
+            </div>
+            <div class="col-md-3">
+
+            </div>
+
+        </div>
         <br /> <br />
         <hr style="color:forestgreen; font-size:50px; font-weight:bold;" />
-        <br /> <br /> <br /> <br />
-    }
-</div>
+        <div class="row d-flex justify-content-center">
+            @foreach (var post in Model.clickedUserPosts)
+            {
+                <div class="card ml-2 " style="width: 18rem;">
+                    <img alt="@post.Id" width="500" class="card-img-top img-fluid" src="data:image/jpg;base64,@Convert.ToBase64String(post.ImgData)" />
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <u>@post.PostName</u>
+                        </h3>
+                        <p class="card-text parag" style="font-family:'Segoe UI';font-size:15px; color:forestgreen;"> @post.Description</p>
+                        <p>@post.SehirAdi / @post.IlceAdi </p>
+                        <a class="btn btn-outline-info" href="@Url.RouteUrl("ShowExtPost",new { post.Id })">Postun Devamını Gör</a>
+
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+
+
+
+    <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+
+        function unFollowUser(id) {
+            debugger;
+        $.confirm({
+            title: 'Dikkat!',
+            content: 'Bu Kullanıcıyı Takipten Çıkarmak İstediğinize Emin Misiniz ?',
+            theme: 'dark',
+
+            buttons: {
+                onaylıyorum: {
+                    btnClass: 'btn-success',
+                   action: function() {
+                        window.location.href = "UnFollowUser?followingId=" + id;
+
+                    }
+                },
+                iptal:  {
+                    btnClass: 'btn-danger',
+                },
+            }
+        });
+
+    };
+
+    </script>

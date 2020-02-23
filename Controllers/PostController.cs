@@ -182,6 +182,15 @@ namespace SehirRehberiApp.Controllers
 
         }
 
+        public ActionResult Delete(int id)
+        {
+            var post = _ctx.posts.FirstOrDefault(x => x.Id == id);
+            post.IsDeleted = true;
+            post.IsActive = false;
+            _ctx.SaveChanges();
+            return RedirectToRoute("Profile");
+        }
+
 
     }
 }

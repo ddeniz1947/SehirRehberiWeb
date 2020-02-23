@@ -19,7 +19,7 @@ namespace SehirRehberiApp.Controllers
             PostViewModel postViewModels = new PostViewModel();
             string ID = Request.Cookies["USERID"].Value;
             int user_id = Convert.ToInt32(ID);
-            postViewModels.Posts = _ctx.posts.Where(x => x.UserId == user_id).ToList();
+            postViewModels.Posts = _ctx.posts.Where(x => x.UserId == user_id & x.IsDeleted == false).ToList();
             var dbUser = _ctx.UserProperties.FirstOrDefault(x => x.id == user_id);
             postViewModels.ProfilePhoto = dbUser.ProfilePhoto;
             postViewModels.UserName = dbUser.UserName;
@@ -38,9 +38,9 @@ namespace SehirRehberiApp.Controllers
             string ID = Request.Cookies["USERID"].Value;
             int user_id = Convert.ToInt32(ID);
             user.Users = _ctx.UserProperties.Where(x => x.id == user_id).ToList();
-            user.Cities = iller; 
+            user.Cities = iller;
             return View(user);
-        }       
+        }
         [HttpPost]
         public ActionResult Edit(HttpPostedFileBase image, UserViewModel model)
         {
@@ -59,11 +59,11 @@ namespace SehirRehberiApp.Controllers
             user.UserName = model.UserName;
             user.Email = model.Email;
             user.FirstName = model.FirstName;
-            
+
             _ctx.SaveChanges();
             return RedirectToRoute("HomePage");
         }
-      
+
         public ActionResult ClickedProfile(int id)
         {
             ClickedProfileViewModel clickedUserProperties = new ClickedProfileViewModel();
@@ -71,7 +71,7 @@ namespace SehirRehberiApp.Controllers
             int followerId = Convert.ToInt32(ID);
             var clickedUser = _ctx.UserProperties.FirstOrDefault(x => x.id == id);
             var takip = _ctx.followClass.Where(x => x.FollowedId == id && x.FollowerId == followerId).ToList();
-            if(takip.Count != 0)
+            if (takip.Count != 0)
             {
                 clickedUserProperties.IsFollowing = true;
             }
@@ -86,10 +86,10 @@ namespace SehirRehberiApp.Controllers
             clickedUserProperties.ClickedLastName = clickedUser.LastName;
             clickedUserProperties.ClickedUserCity = clickedUser.City;
             clickedUserProperties.ClickedUserPhoto = clickedUser.ProfilePhoto;
-            clickedUserProperties.clickedUserPosts = _ctx.posts.Where(x => x.UserId == id).ToList();
+            clickedUserProperties.clickedUserPosts = _ctx.posts.Where(x => x.UserId == id & x.IsDeleted == false).ToList();
 
             return View(clickedUserProperties);
-           
+
         }
         public ActionResult FollowingUser(int id)
 
@@ -105,25 +105,23 @@ namespace SehirRehberiApp.Controllers
             folloWMethod.FollowerName = followerUser.UserName;
             _ctx.followClass.Add(folloWMethod);
             _ctx.SaveChanges();
-            return RedirectToAction("ClickedProfile",new { id = followingUser.id  });
+            return RedirectToAction("ClickedProfile", new { id = followingUser.id });
 
         }
-        //public ActionResult ClickedProfileSecond(int id)
-        //{
-        //    ClickedProfileViewModel clickedUserProperties = new ClickedProfileViewModel();
-        //    var clickedUser = _ctx.UserProperties.FirstOrDefault(x => x.id == id);
-        //    //For ClickedUser User.cs
-        //    clickedUserProperties.ClickedUserName = clickedUser.UserName;
-        //    clickedUserProperties.ClickedUser_id = clickedUser.id;
-        //    clickedUserProperties.ClickedFirstName = clickedUser.FirstName;
-        //    clickedUserProperties.ClickedLastName = clickedUser.LastName;
-        //    clickedUserProperties.ClickedUserCity = clickedUser.City;
-        //    clickedUserProperties.ClickedUserPhoto = clickedUser.ProfilePhoto;
-        //    clickedUserProperties.clickedUserPosts = _ctx.posts.Where(x => x.UserId == id).ToList();
+        public ActionResult UnFollowUser(int followingId)
+        {
+            string ID = Request.Cookies["USERID"].Value;
+            int followerId = Convert.ToInt32(ID);
+            var followingUser = _ctx.UserProperties.FirstOrDefault(x => x.id == followingId);
+            var followerUser = _ctx.UserProperties.FirstOrDefault(x => x.id == followerId);
+            var follows = _ctx.followClass.FirstOrDefault(x => x.FollowedId == followingId & x.FollowerId == followerId);
+            if(follows!= null)
+            {
+                _ctx.followClass.Remove(follows);
+                _ctx.SaveChanges();
+            }
+            return RedirectToAction("ClickedProfile", new { id = followingUser.id });
 
-        //    return View(clickedUserProperties);
-
-        //}
-
+        }
     }
 }

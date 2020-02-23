@@ -9,39 +9,74 @@
     <form action="/EditProfile" class="needs-validation" novalidate method="post" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 mt-2" style="font-family:'El yazması' ;font-size:25px;">
-                    <ul>
-                        <li>
-                            <img alt="@user.id" width="150" class="img-fluid avatar" src="data:image/jpg;base64,@Convert.ToBase64String(user.ProfilePhoto)" />
-                        </li>
-                        <li>
-                            Profil Fotoğrafını Değiştir : <input type="file" style="font-size:25px;" value="@user.ProfilePhoto" class="btn btn-outline-success" name="image" placeholder="Ekleyeceğiniz görseli seçiniz:" accept="image/*">
-                        </li>
-                        <li>
-                            Kullanıcı Adı : <input style="font-family:'Segoe UI'" class="form-control" type="text" name="UserName" value="@user.UserName" />
-                        </li>
-                        <li>
-                            Email Adresi : <input style="font-family:'Segoe UI'" class="form-control" type="text" name="Email" value="@user.Email" />
-                        </li>
-                        <li>
-                            Ad :<input style="font-family:'Segoe UI'" class="form-control" type="text" name="FirstName" value="@user.FirstName" />
-                        </li>
-                        <li>
-                            Soyad :<input style="font-family:'Segoe UI'" class="form-control" type="text" name="LastName" value="@user.LastName" />
-                        </li>
-                        <li>
-                            Şehir :  @Html.DropDownListFor(m => m.IlId, Model.Cities, new {Model.City, @class = "form-control", @style = "font-family:'Segoe UI'" , @value=Model.City})
-                        </li>
-                    </ul>
+                <div class="col-md-6 mt-2 form-group">
+                    <center>
+                        <img alt="@user.id" class="img-fluid avatar border border-success rounded-circle" src="data:image/jpg;base64,@Convert.ToBase64String(user.ProfilePhoto)" />
+                    </center>
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <h6>Profil Fotoğrafını Değiştir :</h6>
+
+                        </div>
+                        <div class="col-md-6">
+                            <input type="file" style="cursor:pointer;" value="@user.ProfilePhoto" class="form-control" name="image" accept="image/*">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6"> 
+                        <h6>Kullanıcı Adı :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <input style="font-family:'Segoe UI'" class="form-control" type="text" name="UserName" value="@user.UserName" />
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Email Adresi :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <input style="font-family:'Segoe UI'" class="form-control" type="text" name="Email" value="@user.Email" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Ad :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <input style="font-family:'Segoe UI'" class="form-control" type="text" name="FirstName" value="@user.FirstName" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Soyad :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <input style="font-family:'Segoe UI'" class="form-control" type="text" name="LastName" value="@user.LastName" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Şehir :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(m => m.IlId, Model.Cities, new { Model.City, @class = "form-control", @style = "font-family:'Segoe UI'", @value = Model.City })
+                        </div>
+                    </div>
 
                 </div>
-                <div class="col-md-6" style="margin-top:100px !important;">
-                    <img width="700" src="~/Content/modalphoto.png" alt="Alternate Text" />
+                <div class="col-md-6 mt-auto justify-content-center">
+                    <img class="img-fluid" src="~/Content/modalphoto.png" alt="Alternate Text" />
                 </div>
             </div>
-            <div class="row ml-5" style="font-family:'El yazması'">
-                <button class="btn btn-outline-success" type="submit" style="font-size:30px;">Güncelle !</button>
-                <a class="btn btn-outline-danger ml-4" style="font-size:30px;" href="@Url.RouteUrl("Profile")">İptal Et</a>
+            <div class="row justify-content-center">
+                <button class="btn btn-outline-success" type="submit">Güncelle !</button>
+                <a class="btn btn-outline-danger ml-4" href="@Url.RouteUrl("Profile")">İptal Et</a>
             </div>
         </div>
     </form>
